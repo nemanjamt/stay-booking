@@ -17,9 +17,9 @@ import java.util.List;
 public class Renter extends User{
     private boolean confirmedEmail;
     public boolean blocked;
-    @OneToMany
+    @OneToMany(mappedBy = "renter")
     private List<Reservation> reservations;
-    @OneToMany
+    @OneToMany(mappedBy = "renter")
     private List<Review> reviews;
 
 }

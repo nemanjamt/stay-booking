@@ -30,12 +30,12 @@ public class Accommodation {
     private Location location;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Tag> tags;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "accommodation")
     private List<Image> images;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "accommodation")
     private List<Reservable> reservables;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "accommodation")
     private List<Reservation> reservations;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "accommodation")
     private List<Review> reviews;
 }

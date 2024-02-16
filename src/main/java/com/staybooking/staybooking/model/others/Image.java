@@ -18,6 +18,6 @@ public class Image {
     private Long id;
     private String path;
 
-    @OneToOne
+    @ManyToOne(optional = true)
     private Accommodation accommodation;
 }

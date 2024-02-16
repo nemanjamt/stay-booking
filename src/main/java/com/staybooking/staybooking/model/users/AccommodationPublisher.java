@@ -17,6 +17,6 @@ public class AccommodationPublisher extends User{
 
     private boolean confirmedEmail;
     private boolean blocked;
-    @OneToMany
+    @OneToMany(mappedBy = "publisher")
     private List<Accommodation> accommodations;
 }

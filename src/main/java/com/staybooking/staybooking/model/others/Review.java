@@ -1,5 +1,6 @@
 package com.staybooking.staybooking.model.others;
 
+import com.staybooking.staybooking.model.users.Renter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,8 @@ public class Review {
     private double rating;
     private LocalDateTime createdDate;
     private boolean deleted;
+    @ManyToOne
+    private Renter renter;
     @ManyToOne(optional = false)
     private Accommodation accommodation;
 
