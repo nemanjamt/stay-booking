@@ -1,8 +1,9 @@
 package com.staybooking.staybooking.model.users;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
+
 
 @Entity
 @Getter

@@ -2,9 +2,9 @@ package com.staybooking.staybooking.model.users;
 
 import com.staybooking.staybooking.model.others.Reservation;
 import com.staybooking.staybooking.model.others.Review;
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Entity

@@ -1,8 +1,7 @@
 package com.staybooking.staybooking.model.others;
-
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 @Getter
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Reservables")
+@Table(name = "reservables")
 public class Reservable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

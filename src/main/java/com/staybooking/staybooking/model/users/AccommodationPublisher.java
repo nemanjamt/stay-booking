@@ -3,7 +3,7 @@ package com.staybooking.staybooking.model.users;
 import com.staybooking.staybooking.model.others.Accommodation;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
