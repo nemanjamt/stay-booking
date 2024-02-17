@@ -22,6 +22,7 @@ public class Accommodation {
     private int bedNumber;
     private int roomNumber;
     private boolean deleted;
+    private double defaultPrice;
     @ManyToOne
     private AccommodationPublisher publisher;
     @ManyToOne
@@ -33,9 +34,11 @@ public class Accommodation {
     @OneToMany(mappedBy = "accommodation")
     private List<Image> images;
     @OneToMany(mappedBy = "accommodation")
-    private List<Reservable> reservables;
+    private List<UnavailabilityPeriod> unavailabilityPeriods;
     @OneToMany(mappedBy = "accommodation")
     private List<Reservation> reservations;
     @OneToMany(mappedBy = "accommodation")
     private List<Review> reviews;
+    @OneToMany(mappedBy = "accommodation")
+    private List<Price> prices;
 }

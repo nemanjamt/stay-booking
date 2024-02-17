@@ -10,13 +10,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "reservables")
-public class Reservable {
+public class UnavailabilityPeriod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private double price;
     private boolean deleted;
     @ManyToOne(optional = false)
     private Accommodation accommodation;
