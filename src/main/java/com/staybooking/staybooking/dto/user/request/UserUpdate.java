@@ -7,21 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserCreate {
+@AllArgsConstructor
+public class UserUpdate {
     @NotNull
     @NotBlank
     private String firstName;
     @NotNull
     @NotBlank
     private String lastName;
-    @NotNull
-    @NotBlank
-    private String email;
-    @NotNull
-    @NotBlank
-    private String password;
     @NotNull
     @NotBlank
     private String phoneNumber;
