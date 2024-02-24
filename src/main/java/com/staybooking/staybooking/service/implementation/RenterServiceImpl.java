@@ -58,9 +58,9 @@ public class RenterServiceImpl implements RenterService {
 
     @Override
     public APIResponse<Boolean> blockRenter(Long id) {
-
         Renter renter = renterRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Renter with specified id does not exist"));
         renter.setBlocked(true);
+        renterRepository.save(renter);
         return APIResponse.generateApiResponse(Boolean.TRUE, HttpStatus.OK, "2000", "Renter successful blocked");
     }
 
@@ -68,6 +68,7 @@ public class RenterServiceImpl implements RenterService {
     public APIResponse<Boolean> unblockRenter(Long id) {
         Renter renter = renterRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Renter with specified id does not exist"));
         renter.setBlocked(false);
+        renterRepository.save(renter);
         return APIResponse.generateApiResponse(Boolean.TRUE, HttpStatus.OK, "2000", "Renter successful unblocked");
     }
 
@@ -75,8 +76,8 @@ public class RenterServiceImpl implements RenterService {
     @Override
     public APIResponse<UserInfo> findRenter(Long id) {
         Renter renter = renterRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Renter with specified id does not exist"));
-        UserInfo updatedRenter = modelMapper.map(renterRepository.save(renter), UserInfo.class);
-        return APIResponse.generateApiResponse(updatedRenter, HttpStatus.OK, "2000", "Renter successful found");
+        UserInfo renterInfo = modelMapper.map(renter, UserInfo.class);
+        return APIResponse.generateApiResponse(renterInfo, HttpStatus.OK, "2000", "Renter successful found");
     }
 
 

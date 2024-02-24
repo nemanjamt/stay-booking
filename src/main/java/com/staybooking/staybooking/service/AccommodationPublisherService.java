@@ -1,0 +1,14 @@
+package com.staybooking.staybooking.service;
+
+import com.staybooking.staybooking.dto.response.APIResponse;
+import com.staybooking.staybooking.dto.user.request.UserCreate;
+import com.staybooking.staybooking.dto.user.request.UserUpdate;
+import com.staybooking.staybooking.dto.user.response.UserInfo;
+
+public interface AccommodationPublisherService {
+    APIResponse<UserInfo> createAccommodationPublisher(UserCreate accommodationPublisherToCreate);
+    APIResponse<UserInfo> updateAccommodationPublisher(Long id, UserUpdate accommodationPublisherToUpdate);
+    APIResponse<UserInfo> findAccommodationPublisher(Long id);
+    APIResponse<Boolean> blockAccommodationPublisher(Long id);
+    APIResponse<Boolean> unblockAccommodationPublisher(Long id);
+}
