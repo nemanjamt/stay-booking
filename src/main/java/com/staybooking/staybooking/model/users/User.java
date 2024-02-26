@@ -1,6 +1,8 @@
 package com.staybooking.staybooking.model.users;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -17,9 +19,21 @@ public abstract class User {
     @SequenceGenerator(name = "SeqGenV1", sequenceName = "SeqV1", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SeqGenV1")
     private Long id;
-    private String name;
+    @NotNull
+    @NotBlank
+    private String firstName;
+    @NotNull
+    @NotBlank
     private String lastName;
+    @Column(unique = true)
+    @NotNull
+    @NotBlank
     private String email;
+    @NotNull
+    @NotBlank
     private String password;
+    @Column(unique = true)
+    @NotNull
+    @NotBlank
     private String phoneNumber;
 }
