@@ -11,10 +11,13 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @Builder
 public class APIResponse <T> {
-    private String status;
+    // The HTTP status code associated with the API response
     private Integer httpStatus;
+    // A human-readable message providing additional information about the API response
     private String message;
+    // An internal code aiding in error identification.
     private String internalCode;
+    // The data payload included in the API response, holding the actual content.
     private T data;
 
     public static <T> APIResponse<T> generateApiResponse(T data, HttpStatus status, String internalCode, String message){

@@ -1,5 +1,7 @@
 package com.staybooking.staybooking.service.implementation;
 
+import com.staybooking.staybooking.constants.EntityNames;
+import com.staybooking.staybooking.constants.ErrorConstants;
 import com.staybooking.staybooking.dto.response.APIResponse;
 import com.staybooking.staybooking.dto.user.request.UserCreate;
 import com.staybooking.staybooking.dto.user.request.UserUpdate;
@@ -50,7 +52,7 @@ public class ModeratorServiceImpl implements ModeratorService {
         if(userRepository.existsByPhoneNumberAndIdNot(moderatorToUpdate.getPhoneNumber(), id)){
             throw new PhoneNumberAlreadyUsedException("Specified phone number is already used");
         }
-        Moderator moderator = moderatorRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Moderator with specified id does not exist"));
+        Moderator moderator = moderatorRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.MODERATOR)));
         moderator.setFirstName(moderatorToUpdate.getFirstName());
         moderator.setLastName(moderatorToUpdate.getLastName());
         moderator.setPhoneNumber(moderatorToUpdate.getPhoneNumber());
@@ -61,7 +63,7 @@ public class ModeratorServiceImpl implements ModeratorService {
 
     @Override
     public APIResponse<Boolean> deleteModerator(Long id) {
-        Moderator moderator = moderatorRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Moderator with specified id does not exist"));
+        Moderator moderator = moderatorRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.MODERATOR)));
         moderator.setDeleted(true);
         moderatorRepository.save(moderator);
         return APIResponse.generateApiResponse(Boolean.TRUE, HttpStatus.OK, "2000", "Moderator successful deleted");
@@ -69,7 +71,7 @@ public class ModeratorServiceImpl implements ModeratorService {
 
     @Override
     public APIResponse<UserInfo> findModerator(Long id) {
-        Moderator moderator = moderatorRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Moderator with specified id does not exist"));
+        Moderator moderator = moderatorRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.MODERATOR)));
         UserInfo moderatorInfo = modelMapper.map(moderator, UserInfo.class);
         return APIResponse.generateApiResponse(moderatorInfo, HttpStatus.OK, "2000", "Moderator successful deleted");
     }
