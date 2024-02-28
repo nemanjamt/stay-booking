@@ -17,7 +17,6 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String path;
-
-    @ManyToOne(optional = true)
+    @ManyToOne
     private Accommodation accommodation;
 }
