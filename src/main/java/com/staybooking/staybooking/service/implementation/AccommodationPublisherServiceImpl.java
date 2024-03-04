@@ -64,10 +64,16 @@ public class AccommodationPublisherServiceImpl implements AccommodationPublisher
     }
 
     @Override
-    public APIResponse<UserInfo> findAccommodationPublisher(Long id) {
-        AccommodationPublisher accommodationPublisher = accommodationPublisherRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.ACCOMMODATION_PUBLISHER)));
+    public APIResponse<UserInfo> getAccommodationPublisherApiResponse(Long id) {
+        AccommodationPublisher accommodationPublisher = findAccommodationPublisher(id);
         UserInfo accommodationPublisherInfo = modelMapper.map(accommodationPublisher, UserInfo.class);
         return APIResponse.generateApiResponse(accommodationPublisherInfo, HttpStatus.OK, "2000", "Accommodation publisher successful found");
+    }
+
+    @Override
+    public AccommodationPublisher findAccommodationPublisher(Long id) {
+        AccommodationPublisher accommodationPublisher = accommodationPublisherRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.ACCOMMODATION_PUBLISHER)));
+        return accommodationPublisher;
     }
 
     @Override

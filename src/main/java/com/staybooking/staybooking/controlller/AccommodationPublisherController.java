@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/accommodationPublisher")
 public class AccommodationPublisherController {
     private AccommodationPublisherService accommodationPublisherService;
-
     @Autowired
     public AccommodationPublisherController(AccommodationPublisherService accommodationPublisherService){
         this.accommodationPublisherService = accommodationPublisherService;
@@ -23,7 +22,7 @@ public class AccommodationPublisherController {
 
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<UserInfo>> findAccommodationPublisher(@PathVariable Long id){
-        APIResponse<UserInfo> apiResponse = accommodationPublisherService.findAccommodationPublisher(id);
+        APIResponse<UserInfo> apiResponse = accommodationPublisherService.getAccommodationPublisherApiResponse(id);
         return new ResponseEntity(apiResponse, HttpStatus.OK);
     }
 

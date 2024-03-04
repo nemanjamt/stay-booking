@@ -25,10 +25,16 @@ public class AccommodationTypeServiceImpl implements AccommodationTypeService {
     }
 
     @Override
-    public APIResponse<AccommodationTypeResponse> findAccommodationType(Long id) {
-        AccommodationType accommodationType = accommodationTypeRepository.findById(id).orElseThrow(() ->  new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.ACCOMMODATION_TYPE)));
+    public APIResponse<AccommodationTypeResponse> getApiAccommodationTypeApiResponse(Long id) {
+        AccommodationType accommodationType =  findAccommodationType(id);
         AccommodationTypeResponse accommodationTypeResponse = modelMapper.map(accommodationType, AccommodationTypeResponse.class);
         return  APIResponse.generateApiResponse(accommodationTypeResponse, HttpStatus.OK, "2000","Accommodation type successful found");
+    }
+
+    @Override
+    public AccommodationType findAccommodationType(Long id) {
+        AccommodationType accommodationType = accommodationTypeRepository.findById(id).orElseThrow(() ->  new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.ACCOMMODATION_TYPE)));
+        return accommodationType;
     }
 
     @Override
