@@ -20,7 +20,7 @@ public class AccommodationTypeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<AccommodationTypeResponse>> findAccommodationType(@PathVariable  Long id){
-        APIResponse<AccommodationTypeResponse> apiResponse = accommodationTypeService.findAccommodationType(id);
+        APIResponse<AccommodationTypeResponse> apiResponse = accommodationTypeService.getApiAccommodationTypeApiResponse(id);
         return new ResponseEntity(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
     }
 

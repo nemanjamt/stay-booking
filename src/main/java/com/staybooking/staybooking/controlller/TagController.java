@@ -23,7 +23,7 @@ public class TagController {
 
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<TagResponse>> findTag(@PathVariable Long id){
-        APIResponse<TagResponse> apiResponse = tagService.findTag(id);
+        APIResponse<TagResponse> apiResponse = tagService.getTagApiResponse(id);
         return new ResponseEntity<>(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
     }
 

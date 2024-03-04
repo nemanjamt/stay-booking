@@ -32,11 +32,19 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public APIResponse<TagResponse> findTag(Long id) {
-        Tag tag = tagRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.TAG)));
+    public APIResponse<TagResponse> getTagApiResponse(Long id) {
+        Tag tag = findTag(id);
         TagResponse tagResponse = modelMapper.map(tag, TagResponse.class);
         return APIResponse.generateApiResponse(tagResponse, HttpStatus.OK, "2000", "Tag successful found");
     }
+
+    @Override
+    public Tag findTag(Long id) {
+        Tag tag = tagRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.TAG)));
+        return tag;
+    }
+
+
 
     @Override
     public APIResponse<TagResponse> createTag(TagCreate tagToCreate) {
