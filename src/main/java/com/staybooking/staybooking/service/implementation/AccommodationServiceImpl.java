@@ -21,6 +21,7 @@ import com.staybooking.staybooking.service.TagService;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,7 @@ public class AccommodationServiceImpl implements AccommodationService {
         this.tagService = tagService;
         this.accommodationPublisherService = accommodationPublisherService;
         this.accommodationTypeService = accommodationTypeService;
+        configureTypeMap();
     }
 
     private AccommodationResponse mapAccommodationToResponse(Accommodation accommodation){
@@ -116,5 +118,9 @@ public class AccommodationServiceImpl implements AccommodationService {
         accommodation.setDeleted(true);
         accommodationRepository.save(accommodation);
         return APIResponse.generateApiResponse(Boolean.TRUE, HttpStatus.OK, "2000","Accommodation successful deleted");
+    }
+    private void configureTypeMap(){
+        TypeMap<AccommodationCreate, Accommodation> propertyMapper = this.modelMapper.typeMap(AccommodationCreate.class, Accommodation.class);
+        propertyMapper.addMappings(mapper -> mapper.skip(Accommodation::setId));
     }
 }

@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccommodationResponse {
+    private Long id;
     private String name;
     private String description;
     private int bedNumber;
