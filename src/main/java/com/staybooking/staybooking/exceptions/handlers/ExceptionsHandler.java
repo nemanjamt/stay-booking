@@ -3,6 +3,7 @@ package com.staybooking.staybooking.exceptions.handlers;
 import com.staybooking.staybooking.dto.response.APIResponse;
 import com.staybooking.staybooking.exceptions.EmailAlreadyUsedException;
 import com.staybooking.staybooking.exceptions.PhoneNumberAlreadyUsedException;
+import com.staybooking.staybooking.exceptions.UnavailabilityPeriodAlreadyDefined;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,10 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value={EntityNotFoundException.class})
     protected ResponseEntity<APIResponse> entityNotFoundException(RuntimeException ex, WebRequest request){
         return new ResponseEntity(APIResponse.generateApiResponse(null, HttpStatus.NOT_FOUND, "4004", ex.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value={UnavailabilityPeriodAlreadyDefined.class})
+    protected ResponseEntity<APIResponse> handleUnavailabilityPeriodAlreadyDefined(RuntimeException ex, WebRequest request){
+        return new ResponseEntity(APIResponse.generateApiResponse(null, HttpStatus.BAD_REQUEST, "4005", ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

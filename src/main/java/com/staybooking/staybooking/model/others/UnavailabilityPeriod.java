@@ -4,12 +4,11 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 @Entity
-@Getter
-@Setter
+@Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "reservables")
+@Table(name = "unavailability_periods")
 public class UnavailabilityPeriod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

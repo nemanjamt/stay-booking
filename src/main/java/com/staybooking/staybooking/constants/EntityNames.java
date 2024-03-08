@@ -10,4 +10,6 @@ public class EntityNames {
     public static final String ACCOMMODATION = "Accommodation";
     public static final String TAG = "Tag";
     public static final String IMAGE = "Image";
+
+    public static final String UNAVAILABILITY_PERIOD = "Unavailability period";
 }
