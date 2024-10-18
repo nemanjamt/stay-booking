@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/moderator")
 public class ModeratorController {
-    private ModeratorService moderatorService;
+    private final ModeratorService moderatorService;
+
     public ModeratorController(ModeratorService moderatorService){
         this.moderatorService = moderatorService;
     }
@@ -21,26 +22,25 @@ public class ModeratorController {
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<UserInfo>> findModerator(@PathVariable Long id){
         APIResponse<UserInfo> apiResponse = moderatorService.findModerator(id);
-        return new ResponseEntity(apiResponse, HttpStatus.OK);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<APIResponse<UserInfo>> createModerator(@Valid @RequestBody UserCreate moderatorToCreate){
         APIResponse<UserInfo> apiResponse = moderatorService.createModerator(moderatorToCreate);
-        return new ResponseEntity(apiResponse, HttpStatus.CREATED);
+        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<APIResponse<UserInfo>> updateModerator(@PathVariable Long id, @Valid @RequestBody UserUpdate moderatorToUpdate){
         APIResponse<UserInfo> apiResponse = moderatorService.updateModerator(id, moderatorToUpdate);
-        return new ResponseEntity(apiResponse, HttpStatus.OK);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<APIResponse<Boolean>> blockModerator(@PathVariable Long id){
         APIResponse<Boolean> apiResponse = moderatorService.deleteModerator(id);
-        return new ResponseEntity(apiResponse, HttpStatus.OK);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
 
 }

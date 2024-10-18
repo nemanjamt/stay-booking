@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/accommodation")
 public class AccommodationController {
-    private AccommodationService accommodationService;
+    private final AccommodationService accommodationService;
     @Autowired
     public AccommodationController(AccommodationService accommodationService){
         this.accommodationService = accommodationService;

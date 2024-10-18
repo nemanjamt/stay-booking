@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/unavailabilityPeriod")
 public class UnavailabilityPeriodController {
-    private UnavailabilityPeriodService unavailabilityPeriodService;
+    private final UnavailabilityPeriodService unavailabilityPeriodService;
     @Autowired
     public UnavailabilityPeriodController(UnavailabilityPeriodService unavailabilityPeriodService){
         this.unavailabilityPeriodService = unavailabilityPeriodService;

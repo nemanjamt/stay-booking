@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/accommodationType")
 public class AccommodationTypeController {
-    private AccommodationTypeService accommodationTypeService;
+    private final AccommodationTypeService accommodationTypeService;
     @Autowired
     public AccommodationTypeController(AccommodationTypeService accommodationTypeService){
         this.accommodationTypeService = accommodationTypeService;
@@ -21,25 +21,25 @@ public class AccommodationTypeController {
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<AccommodationTypeResponse>> findAccommodationType(@PathVariable  Long id){
         APIResponse<AccommodationTypeResponse> apiResponse = accommodationTypeService.getApiAccommodationTypeApiResponse(id);
-        return new ResponseEntity(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
+        return new ResponseEntity<>(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
     }
 
     @PostMapping
     public ResponseEntity<APIResponse<AccommodationTypeResponse>> createAccommodationType(@RequestBody AccommodationTypeRequest accommodationTypeRequest){
         APIResponse<AccommodationTypeResponse> apiResponse = accommodationTypeService.createAccommodationType(accommodationTypeRequest);
-        return new ResponseEntity(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
+        return new ResponseEntity<>(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<APIResponse<AccommodationTypeResponse>> changeAccommodationType(@PathVariable Long id, @RequestBody AccommodationTypeRequest accommodationTypeRequest){
         APIResponse<AccommodationTypeResponse> apiResponse = accommodationTypeService.updateAccommodationType(id, accommodationTypeRequest);
-        return new ResponseEntity(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
+        return new ResponseEntity<>(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<APIResponse<Boolean>> deleteAccommodationType(@PathVariable Long id){
         APIResponse<Boolean> apiResponse = accommodationTypeService.deleteAccommodationType(id);
-        return new ResponseEntity(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
+        return new ResponseEntity<>(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
     }
 
 }
