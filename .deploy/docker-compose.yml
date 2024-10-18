@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    image: 'stay-booking-backend:latest'
+    build:
+      context: ..
+      dockerfile: .deploy/Dockerfile
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stay_booking_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+
+    ports:
+      - "9090:8080"
+
+  db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=stay_booking_db
+    ports:
+      - "5433:5432"
