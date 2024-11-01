@@ -23,7 +23,7 @@ public class RenterController {
 
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<UserInfo>> findRenter(@PathVariable Long id){
-        APIResponse<UserInfo> apiResponse = renterService.findRenter(id);
+        APIResponse<UserInfo> apiResponse = renterService.findRenterApiResponse(id);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 

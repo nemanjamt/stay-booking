@@ -1,9 +1,7 @@
 package com.staybooking.staybooking.exceptions.handlers;
 
 import com.staybooking.staybooking.dto.response.APIResponse;
-import com.staybooking.staybooking.exceptions.EmailAlreadyUsedException;
-import com.staybooking.staybooking.exceptions.PhoneNumberAlreadyUsedException;
-import com.staybooking.staybooking.exceptions.UnavailabilityPeriodAlreadyDefined;
+import com.staybooking.staybooking.exceptions.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -55,5 +53,15 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value={UnavailabilityPeriodAlreadyDefined.class})
     protected ResponseEntity<APIResponse> handleUnavailabilityPeriodAlreadyDefined(RuntimeException ex, WebRequest request){
         return new ResponseEntity(APIResponse.generateApiResponse(null, HttpStatus.BAD_REQUEST, "4005", ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value={OverlappingPriceDateRangeException.class})
+    protected ResponseEntity<APIResponse> handleOverlappingPriceDateRangeException(RuntimeException ex, WebRequest request){
+        return new ResponseEntity(APIResponse.generateApiResponse(null, HttpStatus.BAD_REQUEST, "4006", ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value={OverlappingReservationDateRangeException.class})
+    protected ResponseEntity<APIResponse> handleOverlappingReservationDateRangeException(RuntimeException ex, WebRequest request){
+        return new ResponseEntity(APIResponse.generateApiResponse(null, HttpStatus.BAD_REQUEST, "4007", ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

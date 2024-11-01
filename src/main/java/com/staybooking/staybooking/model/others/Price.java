@@ -3,6 +3,7 @@ package com.staybooking.staybooking.model.others;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 @Getter
@@ -17,8 +18,8 @@ public class Price {
     private Long id;
     @ManyToOne
     private Accommodation accommodation;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double price;
     private boolean deleted;
 

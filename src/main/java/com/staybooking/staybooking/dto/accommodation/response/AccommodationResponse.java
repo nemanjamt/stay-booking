@@ -18,7 +18,7 @@ public class AccommodationResponse {
     private String description;
     private int bedNumber;
     private int roomNumber;
-    private double defaultPrice;
+    private double price;
     private AccommodationTypeResponse accommodationType;
     private UserInfo accommodationPublisher;
     private List<TagResponse> tags;

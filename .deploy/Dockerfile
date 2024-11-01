@@ -1,4 +1,4 @@
-FROM amazoncorretto:21.0.4-al2023-headless
+FROM amazoncorretto:8u432-alpine3.19-jre
 
 # the JAR file path
 ARG JAR_FILE=target/*.jar

@@ -38,7 +38,7 @@ public class RenterServiceImpl implements RenterService {
             throw new EmailAlreadyUsedException("Specified email is already used");
         }
 
-        if(userRepository.existsByPhoneNumber(renterToCreate.getPhoneNumber())){
+        if (userRepository.existsByPhoneNumber(renterToCreate.getPhoneNumber())) {
             throw new PhoneNumberAlreadyUsedException("Specified phone number is already used");
         }
 
@@ -78,13 +78,16 @@ public class RenterServiceImpl implements RenterService {
         return APIResponse.generateApiResponse(Boolean.TRUE, HttpStatus.OK, "2000", "Renter successful unblocked");
     }
 
-
     @Override
-    public APIResponse<UserInfo> findRenter(Long id) {
+    public APIResponse<UserInfo> findRenterApiResponse(Long id) {
         Renter renter = renterRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.RENTER)));
         UserInfo renterInfo = modelMapper.map(renter, UserInfo.class);
         return APIResponse.generateApiResponse(renterInfo, HttpStatus.OK, "2000", "Renter successful found");
     }
 
+    @Override
+    public Renter findRenter(Long id) {
+        return renterRepository.findById(id).orElseThrow( () -> new EntityNotFoundException(String.format(ErrorConstants.ENTITY_WITH_ID_NOT_FOUND, EntityNames.RENTER)));
+    }
 
 }

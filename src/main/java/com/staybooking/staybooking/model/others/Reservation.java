@@ -4,6 +4,7 @@ import com.staybooking.staybooking.model.users.Renter;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,11 +19,13 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-    private LocalDateTime createdDate;
-    private LocalDateTime endDate;
+    private LocalDate createdDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double price;
     private boolean canceled;
-    @ManyToOne
+    private boolean deleted;
+    @ManyToOne(optional = false)
     private Renter renter;
     @ManyToOne(optional = false)
     private Accommodation accommodation;
