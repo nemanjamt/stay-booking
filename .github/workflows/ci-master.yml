@@ -31,14 +31,14 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Set up Docker
       run: |
-        docker-compose -f .deploy/docker-compose.yml up -d
+        docker compose -f .deploy/docker-compose.yml up -d
 
     - name: Wait for API to be ready
       run: |
           curl -f http://localhost:8089/backend/api/tag/1
 
     - name: Stop Docker Compose
-      run: docker-compose -f .deploy/docker-compose.yml down
+      run: docker compose -f .deploy/docker-compose.yml down
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
