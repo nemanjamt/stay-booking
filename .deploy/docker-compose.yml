@@ -16,9 +16,8 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
-
-    ports:
-      - "9090:8080"
+    networks:
+      - dev
 
   db:
     image: postgres
@@ -27,5 +26,23 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=stay_booking_db
+    networks:
+      - dev
+  nginx:
+    image: nginx:1.27.2
+    container_name: nginx-proxy
+    depends_on:
+      - app
+      - db
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+    networks:
+      - dev
     ports:
-      - "5433:5432"
+      - "8089:80"
+
+networks:
+  dev:
+    driver: bridge
+
+name: backend-setup-with-db
