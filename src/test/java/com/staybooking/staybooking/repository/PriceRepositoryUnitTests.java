@@ -5,15 +5,14 @@ import com.staybooking.staybooking.model.others.Price;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+@ActiveProfiles("test")
 @DataJpaTest
 public class PriceRepositoryUnitTests {
 
@@ -21,8 +20,6 @@ public class PriceRepositoryUnitTests {
     @Autowired
     private PriceRepository priceRepository;
 
-//    @Autowired
-//    private AccommodationRepository accommodationRepository;
 
     @Test
     void testFindPrice(){
